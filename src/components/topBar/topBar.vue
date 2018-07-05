@@ -1,7 +1,7 @@
 <template>
     <mu-container>
       <div class="music-top">
-        <mu-tabs :value.sync="index" full-width color='#0e0a0a' indicator-color='#f70404' ripple>
+        <mu-tabs :value.sync="index" full-width color='#0e0a0a' indicator-color='#f70404' ripple :change="change()">
           <mu-tab>
             <mu-icon value="phone"></mu-icon>
             RECENTS
@@ -31,7 +31,11 @@ export default {
       index: ""
     };
   },
-  methods: {},
+  methods: {
+      change(){
+          console.log("change")
+      }
+  },
   mounted() {
     this.$root.eBus.$on("topInitActive", () => {
       this.index = "";

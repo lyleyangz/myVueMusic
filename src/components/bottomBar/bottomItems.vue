@@ -1,16 +1,16 @@
 <template>
     <mu-container>
         <div class="demo-text" v-if="shift == 'movies'">
-            <p>movies</p>
+            <p>{{shift}}</p>
         </div>
         <div class="demo-text" v-if="shift == 'music'">
-            <p>music</p>
+            <p>{{shift}}</p>
         </div>
         <div class="demo-text" v-if="shift == 'news'">
-            <p>news</p>
+            <p>{{shift}}</p>
         </div>
         <div class="demo-text" v-if="shift == 'pictures'">
-            <p>pictures</p>
+            <p>{{shift}}</p>
         </div>
         <slot></slot>
     </mu-container>

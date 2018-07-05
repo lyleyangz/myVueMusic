@@ -2,13 +2,13 @@
     <mu-container>
         <slot></slot>
         <div class="demo-text" v-if="index == '0'">
-            <p>index:0</p>
+            <p>index: {{index}}</p>
         </div>
         <div class="demo-text" v-if="index == '1'">
-            <p>index:1</p>
+            <p>index: {{index}}</p>
         </div>
         <div class="demo-text" v-if="index == '2'">
-            <p>index:2</p>
+            <p>index: {{index}}</p>
         </div>
 </mu-container>
 </template>
