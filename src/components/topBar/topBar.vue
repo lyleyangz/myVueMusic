@@ -38,8 +38,7 @@ export default {
     });
   },
   updated() {
-      debugger
-    if (this.index !== '') {
+    if (this.index !== "") {
       this.$root.eBus.$emit("bottomInitActive");
     }
   },
@@ -52,8 +51,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .music-top {
-  // position: fixed;
-  // top: 0rem;
   width: 100%;
 }
 </style>

@@ -46,8 +46,5 @@ export default {
   position: fixed;
   bottom: 0rem;
   width: 100%;
-  .mu-bottom-nav-shift {
-    // background-color: #0e0a0a;
-  }
 }
 </style>
