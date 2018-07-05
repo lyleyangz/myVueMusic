@@ -13,5 +13,6 @@ export default {
 .container{
     padding-right: 0rem;
     padding-left: 0rem;
+    max-width:100%;
   }
 </style>

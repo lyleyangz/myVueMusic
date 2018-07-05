@@ -7,7 +7,10 @@ import store from './store/index'
 import MuseUI from 'muse-ui'
 import 'muse-ui/dist/muse-ui.css'
 import utils from './common/utils/index'
-import theme from 'muse-ui/lib/theme';
+// import theme from 'muse-ui/lib/theme';
+import './assets/js/flexible'
+// 样式引入
+import './assets/styles/flexible.css'
 
 
 
@@ -20,6 +23,9 @@ new Vue({
   el: '#app',
   router:router.routerGroup,
   store,
+  data:{
+    eBus:new Vue()
+  },
   components: { App },
   template: '<App/>'
 })
