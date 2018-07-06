@@ -13,7 +13,9 @@
     "muse-ui": "^3.0.0-rc.4",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "axios": "~0.17.1",
+    "vue-lazyload": "~1.1.4"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
