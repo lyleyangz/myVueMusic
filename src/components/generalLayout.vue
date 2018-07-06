@@ -1,7 +1,7 @@
 <template>
 <div>
         <Topbar></Topbar>
-        <Bottombar></Bottombar>
+        <Bottombar class="music-bottom"></Bottombar>
 </div>
 </template>
 
@@ -30,4 +30,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+.music-bottom {
+  bottom: 0rem;
+  width: 100%;
+}
+
 </style>

@@ -28,7 +28,7 @@ export default {
   },
   mounted() {},
   updated() {
-    console.log(this.$store.state.count);
+    // console.log(this.$store.state.count);
   },
   methods: {
     add() {
@@ -44,7 +44,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .demo-text {
-  padding: 16px;
+  padding: .213333rem;
   background: url("../../assets/images/bg2.jpg");
   background-size: 100% 100%;
   width: 100%;

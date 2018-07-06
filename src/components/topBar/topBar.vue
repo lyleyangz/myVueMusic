@@ -1,6 +1,7 @@
 <template>
     <mu-container>
-        <mu-drawer :open.sync="open" :docked="docked" :right="position === 'right'">
+                <!-- 抽屉 -->
+                <mu-drawer :open.sync="open" :docked="docked" :right="position === 'right'">
                     <mu-list>
                     <mu-list-item button>
                         <mu-list-item-title>Menu Item 1</mu-list-item-title>
@@ -13,29 +14,29 @@
                     </mu-list-item>
                     </mu-list>
                 </mu-drawer>
-      <div class="music-top">
-        <mu-tabs :value.sync="index" full-width color='#0e0a0a' :indicator-color='indicatorColor' ripple :change="change()">
+        <div class="music-top">
+            <mu-tabs :value.sync="index" full-width color='#0e0a0a' :indicator-color='indicatorColor' ripple :change="change()">
                 <mu-flex justify-content="center" align-items="center">
                 <mu-button color="#fff" @click="open = !open" flat>
                     <mu-icon size="48" value="home"></mu-icon>
                 </mu-button>
                 </mu-flex>
-          <mu-tab>
-            <mu-icon value="phone"></mu-icon>
-            RECENTS
-          </mu-tab>
-          <mu-tab>
-            <mu-icon value="favorite"></mu-icon>
-            FAVORITES
-          </mu-tab>
-          <mu-tab>
-            <mu-icon value="person_pin"></mu-icon>
-            NEARBY
-          </mu-tab>
-        </mu-tabs>
-        <Topitems :index = "index"></Topitems>
-      </div>
-</mu-container>
+                <mu-tab>
+                    <mu-icon value="phone"></mu-icon>
+                    RECENTS
+                </mu-tab>
+                <mu-tab>
+                    <mu-icon value="favorite"></mu-icon>
+                    FAVORITES
+                </mu-tab>
+                <mu-tab>
+                    <mu-icon value="person_pin"></mu-icon>
+                    NEARBY
+                </mu-tab>
+            </mu-tabs>
+            <Topitems :index = "index"></Topitems>
+        </div>
+    </mu-container>
 </template>
 
 <script>
@@ -72,6 +73,7 @@ export default {
   updated() {
     if (this.index !== "") {
       this.$root.eBus.$emit("bottomInitActive");
+      this.getSpanBotCol(true);
     }
   },
   destroyed() {
