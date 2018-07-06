@@ -58,8 +58,8 @@ export default {
 <style lang="scss" scoped>
 .demo-text {
   padding: 16px;
-  background:url("../../assets/images/bg.png");
-  background-size: contain;
+  background:url("../../assets/images/bg.jpg");
+  background-size: 100% 100%;
   width: 100%;
   height: 16.666667rem;
   img{

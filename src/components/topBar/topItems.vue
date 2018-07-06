@@ -16,24 +16,22 @@
 
 <script>
 export default {
-    props:["index"],
+  props: ["index"],
   data() {
-    return {
-    };
+    return {};
   },
-  computed:{
-      count(){
-          return this.$store.state.count
-      }
+  computed: {
+    count() {
+      return this.$store.state.count;
+    }
   },
-  mounted(){
-  },
+  mounted() {},
   updated() {
     console.log(this.$store.state.count);
   },
   methods: {
-    a(){
-        this.$store.commit('increment');
+    a() {
+      this.$store.commit("increment");
     }
   }
 };
@@ -42,11 +40,14 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .demo-text {
-    padding: 16px;
-    background: #fff;
-    button{
-        width:.666667rem;
-        height: .666667rem
-    }
+  padding: 16px;
+  background: url("../../assets/images/bg2.jpg");
+  background-size: 100% 100%;
+  width: 100%;
+  height: 16.666667rem;
+  button {
+    width: 0.666667rem;
+    height: 0.666667rem;
   }
+}
 </style>
