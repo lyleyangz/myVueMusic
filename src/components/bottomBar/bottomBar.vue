@@ -2,8 +2,8 @@
     <mu-container>
         <div class="music-bottom">
             <mu-bottom-nav :value.sync="shift" shift ripple color="#0e0a0a">
-                <mu-bottom-nav-item value="movies" title="Movies" icon="ondemand_video"></mu-bottom-nav-item>
                 <mu-bottom-nav-item value="music" title="Music" icon="music_note"></mu-bottom-nav-item>
+                <mu-bottom-nav-item value="movies" title="Movies" icon="ondemand_video"></mu-bottom-nav-item>
                 <mu-bottom-nav-item value="news" title="News" icon="books"></mu-bottom-nav-item>
                 <mu-bottom-nav-item value="pictures" title="Pictures" icon="photo"></mu-bottom-nav-item>
             </mu-bottom-nav>
@@ -20,7 +20,7 @@ export default {
   },
   data() {
     return {
-      shift: "movies"
+      shift: "music"
     };
   },
   methods: {},

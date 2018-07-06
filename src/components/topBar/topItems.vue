@@ -3,6 +3,7 @@
         <slot></slot>
         <div class="demo-text" v-if="index == '0'">
             <p>index: {{index}}</p>
+            <button @click="a()">{{count}}</button>
         </div>
         <div class="demo-text" v-if="index == '1'">
             <p>index: {{index}}</p>
@@ -20,13 +21,20 @@ export default {
     return {
     };
   },
+  computed:{
+      count(){
+          return this.$store.state.count
+      }
+  },
   mounted(){
   },
   updated() {
-    console.log(this.index,'fa');
+    console.log(this.$store.state.count);
   },
   methods: {
-    
+    a(){
+        this.$store.commit('increment');
+    }
   }
 };
 </script>
@@ -36,5 +44,9 @@ export default {
 .demo-text {
     padding: 16px;
     background: #fff;
+    button{
+        width:.666667rem;
+        height: .666667rem
+    }
   }
 </style>

@@ -1,7 +1,25 @@
 <template>
     <mu-container>
+        <mu-drawer :open.sync="open" :docked="docked" :right="position === 'right'">
+                    <mu-list>
+                    <mu-list-item button>
+                        <mu-list-item-title>Menu Item 1</mu-list-item-title>
+                    </mu-list-item>
+                    <mu-list-item button>
+                        <mu-list-item-title>Menu Item 2</mu-list-item-title>
+                    </mu-list-item>
+                    <mu-list-item button>
+                        <mu-list-item-title @click="open = false">Close</mu-list-item-title>
+                    </mu-list-item>
+                    </mu-list>
+                </mu-drawer>
       <div class="music-top">
-        <mu-tabs :value.sync="index" full-width color='#0e0a0a' indicator-color='#f70404' ripple :change="change()">
+        <mu-tabs :value.sync="index" full-width color='#0e0a0a' :indicator-color='indicatorColor' ripple :change="change()">
+                <mu-flex justify-content="center" align-items="center">
+                <mu-button color="#fff" @click="open = !open" flat>
+                    <mu-icon size="48" value="home"></mu-icon>
+                </mu-button>
+                </mu-flex>
           <mu-tab>
             <mu-icon value="phone"></mu-icon>
             RECENTS
@@ -28,17 +46,27 @@ export default {
   },
   data() {
     return {
-      index: ""
+      docked: false,
+      open: false,
+      position: "left",
+      index: "",
+      indicatorColor: "#f70404"
     };
   },
   methods: {
-      change(){
-          console.log("change")
-      }
+    getSpanBotCol(sign) {
+      return sign
+        ? (this.indicatorColor = "#f70404")
+        : (this.indicatorColor = "#0e0a0a");
+    },
+    change() {
+      //   console.log("change")
+    }
   },
   mounted() {
     this.$root.eBus.$on("topInitActive", () => {
       this.index = "";
+      this.getSpanBotCol(false);
     });
   },
   updated() {
