@@ -1,7 +1,7 @@
 <template>
 <div>
-        <Topbar :q="Topbar"></Topbar>
-        <Bottombar :q='Topbar123'></Bottombar>
+        <Topbar></Topbar>
+        <Bottombar></Bottombar>
 </div>
 </template>
 
@@ -20,8 +20,6 @@ export default {
     },
   data() {
     return {
-        Topbar:'Topbar',
-        Topbar123:'Topbar123'
     };
   },
   mounted() {},

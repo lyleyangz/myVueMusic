@@ -3,10 +3,11 @@
         <slot></slot>
         <div class="demo-text" v-if="index == '0'">
             <p>index: {{index}}</p>
-            <button @click="a()">{{count}}</button>
+            <button @click="add()">{{count}}</button>
         </div>
         <div class="demo-text" v-if="index == '1'">
             <p>index: {{index}}</p>
+            <button @click="reduce()">{{count}}</button>
         </div>
         <div class="demo-text" v-if="index == '2'">
             <p>index: {{index}}</p>
@@ -30,8 +31,11 @@ export default {
     console.log(this.$store.state.count);
   },
   methods: {
-    a() {
-      this.$store.commit("increment");
+    add() {
+      this.$store.commit("add");
+    },
+    reduce() {
+      this.$store.commit("reduce");
     }
   }
 };

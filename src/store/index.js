@@ -6,8 +6,13 @@ export default new Vuex.Store({
       count: 0
     },
     mutations: {
-      increment (state) {
+      add (state) {
         state.count++
+      },
+      reduce (state) {
+        if(state.count > 0){
+          state.count--
+        }
       }
     }
   })
