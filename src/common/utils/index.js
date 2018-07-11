@@ -12,6 +12,8 @@ import getQueryString from './getQueryString'
 import IDcardCheck from './IDcardCheck'
 import countDown from './countDown'
 import countUp from './countUp'
+import parseLyric from './parseLyric'
+
 
 export default {
   throttle,
@@ -27,5 +29,6 @@ export default {
   getQueryString,
   IDcardCheck,
   countDown,
-  countUp
+  countUp,
+  parseLyric
 }

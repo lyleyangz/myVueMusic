@@ -20,12 +20,12 @@
             </div>
             <div class="music-list">
                 <mu-expansion-panel :expand="panel === 'panel1'" @change="toggle('panel1')" :zDepth='24'>
-                    <div slot="header">推荐歌单</div>
+                    <div slot="header" @click="testUrl()">推荐歌单</div>
                     <mu-container>
                     <mu-flex justify-content="center">
                         <mu-paper :z-depth="1">
                             <mu-grid-list class="gridlist-demo">
-                                <mu-grid-tile v-for="tile, index in list" :key="index">
+                                <mu-grid-tile v-for="tile, index in list" :key="index"  @click="gridListRouter(index)">
                                 <img :src="tile.image" >
                                 <span slot="title">{{tile.title}}</span>
                                 <span slot="subTitle">by <b>{{tile.author}}</b></span>
@@ -97,6 +97,7 @@ import carouselImg1 from "../../assets/images/carousel-1.jpg";
 import carouselImg2 from "../../assets/images/carousel-2.jpg";
 import carouselImg3 from "../../assets/images/carousel-3.jpg";
 import carouselImg4 from "../../assets/images/carousel-4.jpg";
+import http from "../../api/fetch.js";
 
 export default {
   props: ["shift"],
@@ -129,12 +130,61 @@ export default {
           title: "Hats",
           author: "kakali"
         }
-      ]
+      ],
+      data: {
+        method: "get",
+        params: {
+          keyword: "thatgirl",
+          page: 1,
+          pagesize: 1
+        }
+      }
     };
   },
   methods: {
     toggle(panel) {
       this.panel = panel === this.panel ? "" : panel;
+    },
+    gridListRouter(index) {
+      // console.log(index)
+    },
+    testUrl() {
+      if (!this.panel) {
+        http
+          .httpHash(this.data)
+          .then(res => {
+            if (res.error_code === 0 && res.status === 1) {
+              if (res.data.lists.length > 1) {
+                // let multipleData = {}
+                for (let i in res.data.lists) {
+                  http
+                    .httpSource({
+                      hash: res.data.lists[i].FileHash,
+                      album_id: res.data.lists[i].AlbumID
+                    })
+                    .then(res => {
+                      let a = this.globalFun.parseLyric(res.data.lyrics);
+                      console.log(a);
+                    });
+                }
+              } else {
+                http
+                  .httpSource({
+                    hash: res.data.lists[0].FileHash,
+                    album_id: res.data.lists[0].AlbumID
+                  })
+                  .then(res => {
+                    console.log(res.data.lyrics);
+                    let a = this.globalFun.parseLyric(res.data.lyrics);
+                    console.log(a);
+                  });
+              }
+            }
+          })
+          .catch(error => {
+            console.warn(error, "fetch.js-185");
+          });
+      }
     }
   },
   mounted() {},
