@@ -86,5 +86,8 @@ export default {
 <style lang="scss" scoped>
 .music-top {
   width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 9999;
 }
 </style>

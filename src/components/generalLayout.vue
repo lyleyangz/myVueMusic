@@ -33,6 +33,7 @@ export default {
 .music-bottom {
   bottom: 0rem;
   width: 100%;
+  padding-top: 1rem;
 }
 
 </style>
