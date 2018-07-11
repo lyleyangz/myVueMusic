@@ -28,6 +28,11 @@ const topItems = (resolve) => {
     resolve(module)
   })
 }
+const player = (resolve) => {
+  import('@/components/player/player').then((module) => {
+    resolve(module)
+  })
+}
 const routerGroup = new Router({
   routes: [
     {
@@ -39,20 +44,27 @@ const routerGroup = new Router({
     {
       path: '/generalLayout',
       component: generalLayout,
-      children:[
-        {path: 'bottomBar',component: bottomBar,
-          children:[
-            {path: 'bottomItems',component: bottomItems}
+      children: [
+        {
+          path: 'bottomBar', component: bottomBar,
+          children: [
+            { path: 'bottomItems', component: bottomItems }
           ]
         },
-        {path: 'topBar',component: topBar,
-          children:[
-            {path: 'topItems',component: topItems}
-          ]}
+        {
+          path: 'topBar', component: topBar,
+          children: [
+            { path: 'topItems', component: topItems }
+          ]
+        },
       ],
       meta: {
         title: '音乐播放器',
       }
+    },
+    {
+      path: "/player",
+      component: player
     }
   ]
 })

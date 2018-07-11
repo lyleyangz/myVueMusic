@@ -79,7 +79,7 @@
             </div>
         </div>
         <div class="demo-text" v-if="shift == 'movies'">
-            <p>{{shift}}</p>
+            <player></player>
         </div>
         <div class="demo-text" v-if="shift == 'news'">
             <p>{{shift}}</p>
@@ -98,9 +98,13 @@ import carouselImg2 from "../../assets/images/carousel-2.jpg";
 import carouselImg3 from "../../assets/images/carousel-3.jpg";
 import carouselImg4 from "../../assets/images/carousel-4.jpg";
 import http from "../../api/fetch.js";
+import player from "../player/player"
 
 export default {
   props: ["shift"],
+  components: {
+    player
+  },
   data() {
     return {
       carouselImg1,
