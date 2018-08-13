@@ -22,7 +22,9 @@ export default {
     return {
     };
   },
-  mounted() {},
+  mounted() {
+    console.log(this.$i18n)
+  },
   updated() {},
   methods: {}
 };

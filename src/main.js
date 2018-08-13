@@ -7,6 +7,8 @@ import store from './store/index'
 import MuseUI from 'muse-ui'
 import axios from 'axios';
 import 'muse-ui/dist/muse-ui.css'
+import i18n from './common/i18n';
+
 import utils from './common/utils/index'
 // import theme from 'muse-ui/lib/theme';
 import './assets/js/flexible'
@@ -28,6 +30,7 @@ new Vue({
   data:{
     eBus:new Vue()
   },
+  i18n,
   components: { App },
   template: '<App/>'
 })

@@ -1,3 +1,4 @@
+// 数据对比模块
 const assert = require('assert');
 
 // 验证输出的错误：
@@ -15,3 +16,4 @@ try {
         console.log("上面出错了!")
         console.log('【',err.message,'】','【',err.operator,'】')
 }
+// 详细资料   https://www.jb51.net/article/123971.html
