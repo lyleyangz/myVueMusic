@@ -37,7 +37,11 @@ exports.showAlbums  = function(req,res,next) {
 exports.doPost = function(req,res,next) {
     var form = new formidable.IncomingForm();
     form.uploadDir = path.normalize(__dirname + '/../backups/') 
-    form.parse(req, function(err, fields, files) {
+    form.parse(req, function(err,fields,files) {
+        if(err){
+            next();
+            return;
+        }
         var wenjianjia = fields.wenjianjia;
         var extname = path.extname(files.tupian.name)
         var oldpath = files.tupian.path;
