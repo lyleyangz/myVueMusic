@@ -13,6 +13,9 @@ app.use(express.static('./uploads'));
 app.get('/',router.showIndex);
 //相册
 app.get('/:albumsNames',router.showAlbums);
+// post页面路由
+app.post('/post',router.doPost)
+// 404页面
 app.use(function(req,res){
     res.render('err')
 })

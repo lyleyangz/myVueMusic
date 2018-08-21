@@ -1,4 +1,7 @@
-var fileModel = require('../models/file.js')
+var fileModel = require('../models/file.js');
+var formidable =  require('formidable');
+var fs = require("fs");
+var path = require('path')
 
 exports.showIndex = function(req,res,next) {
     // node思想，在获取完成全部的文件夹以后，调用回调callback，拿到全部数据进行render
@@ -29,4 +32,22 @@ exports.showAlbums  = function(req,res,next) {
             pics:allPics
         })
     })
+}
+
+exports.doPost = function(req,res,next) {
+    var form = new formidable.IncomingForm();
+    form.uploadDir = path.normalize(__dirname + '/../backups/') 
+    form.parse(req, function(err, fields, files) {
+        var wenjianjia = fields.wenjianjia;
+        var extname = path.extname(files.tupian.name)
+        var oldpath = files.tupian.path;
+        var newpath = path.normalize(__dirname + '/../uploads/' + wenjianjia + '/' + new Date().getTime() + extname)
+        fs.rename(oldpath,newpath,function(err){
+            if(err){
+                next()
+                return 
+            }
+        })
+        res.send('成功')
+      });
 }
