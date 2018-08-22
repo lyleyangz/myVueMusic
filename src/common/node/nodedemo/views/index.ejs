@@ -41,6 +41,9 @@
                     <li>
                         <a href="/upload">上传</a>
                     </li>
+                    <li>
+                        <a href="/recycleBin">回收站</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -48,7 +51,7 @@
     <div class="container">
         <div class="row">
             <% for(var i = 0 ;i< ablums.length;i++){%>
-                <div class="col-xs-6 col-md-3">
+                <div class="col-xs-6 col-md-2">
                     <a href="<%= ablums[i].holder%>" class="thumbnail">
                         <% if(ablums[i].holderLen != 0){%>
                             <img src="/images/file_have.jpg" alt="...">

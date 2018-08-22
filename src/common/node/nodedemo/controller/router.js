@@ -29,13 +29,24 @@ exports.showAlbums = function (req, res, next) {
     var albumsNames = req.params.albumsNames;
     fileModel.getAllPics(albumsNames, function (err, allPics) {
         if (err) {
-            // res.render('err');
             next();
             return;
         }
         res.render('pics', {
             albumsNames: albumsNames,
             pics: allPics
+        })
+    })
+}
+// 显示回收站的东西
+exports.showRecycleBin = function (req,res,next) {
+    fileModel.getRecycleBin('recycleBin', function (Pics) {
+        if (Pics.length == 0) {
+            next();
+            return;
+        }
+        res.render('recycle', {
+            pics:Pics
         })
     })
 }

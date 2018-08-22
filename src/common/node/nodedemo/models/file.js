@@ -53,6 +53,25 @@ exports.getAllPics = function (albumsNames, callback) {
         })(0);
     })
 }
+// 获取回收站的文件
+exports.getRecycleBin = function (folder,callback) {
+    fs.readdir("./" + folder,function (err,files) {
+        if(err){
+            callback([]);
+            return
+        }
+        callback(files)
+        console.log(files)
+        var RecycleBinPics = [];
+        // (function (i) {
+        //     if(i == files.length){
+        //         callback(null,RecycleBinPics);
+        //         return
+        //     }
+        //     fs.stat('./' + folder)
+        // })(0);
+    })
+}
 // 删除对应文件夹下的一个文件或多个文件
 exports.deleteFolderFile = function (folder,file,callback) {
     fs.exists('./uploads/' + folder + '/' + file, function (exists) {

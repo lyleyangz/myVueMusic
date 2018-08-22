@@ -109,4 +109,5 @@ npm run build --report
 # destroy() 销毁 better-scroll，解绑事件
 ```
 
+<!-- node  https://www.bilibili.com/video/av19641847/?p=40 -->
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
