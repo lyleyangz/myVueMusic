@@ -3,6 +3,7 @@ var formidable = require('formidable');
 var fs = require("fs");
 var path = require('path')
 
+// 显示相册文件夹
 exports.showIndex = function (req, res, next) {
     // node思想，在获取完成全部的文件夹以后，调用回调callback，拿到全部数据进行render
     fileModel.getPicsFolder(function (err, allPicArr) {
@@ -22,6 +23,7 @@ exports.showIndex = function (req, res, next) {
     })
 }
 
+// 显示对应文件夹的内容文件
 exports.showAlbums = function (req, res, next) {
     // 文件图片名称
     var albumsNames = req.params.albumsNames;
@@ -37,7 +39,27 @@ exports.showAlbums = function (req, res, next) {
         })
     })
 }
-
+// 删除文件夹里的文件
+exports.deletePics = function (req, res, next) {
+    var folder = req.params.holdersName;
+    var folderFileExt = (req.params.folderFileExt).split(folder)[1];
+    fileModel.deleteFolderFile(folder,folderFileExt, function (bol) {
+        if (!bol) {
+            next();
+            return;
+        }
+        fileModel.getAllPics(folder, function (err, allPics) {
+            if (err) {
+                next();
+                return;
+            }
+            res.render('pics', {
+                albumsNames: folder,
+                pics: allPics
+            })
+        })
+    })
+}
 // 上传页面路由
 exports.showUpload = function (req, res) {
     fileModel.getPicsFolder(function (err, allPicArr) {

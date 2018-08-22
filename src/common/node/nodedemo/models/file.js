@@ -26,7 +26,7 @@ exports.getPicsFolder = function (callback) {
     })
 }
 
-// 获取对应文件夹下的文件信息
+// 获取对应文件夹下的所有文件信息
 exports.getAllPics = function (albumsNames, callback) {
     fs.readdir("./uploads/" + albumsNames, function (err, files) {
         if (err) {
@@ -53,7 +53,20 @@ exports.getAllPics = function (albumsNames, callback) {
         })(0);
     })
 }
-
+// 删除对应文件夹下的一个文件或多个文件
+exports.deleteFolderFile = function (folder,file,callback) {
+    fs.exists('./uploads/' + folder + '/' + file, function (exists) {
+        if(exists){
+            var filePath = './uploads/' + folder + '/' + file;
+            fs.unlink(filePath,function (err) {
+                if(err){
+                    callback(false)
+                }
+                callback(true)
+            })
+        }
+    })
+}
 // 判断所有文件夹时候含有子文件
 exports.perFolderHas = function (holders, callback) {
     var isHasHolder = [];

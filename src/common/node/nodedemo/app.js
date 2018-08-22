@@ -13,6 +13,7 @@ app.use(express.static('./uploads'));
 app.get('/',router.showIndex);
 //相册
 app.get('/:albumsNames',router.showAlbums);
+app.get('/:holdersName/:folderFileExt',router.deletePics);
 // post页面路由
 app.get('/upload',router.showUpload)
 app.post('/post',router.doPost)
