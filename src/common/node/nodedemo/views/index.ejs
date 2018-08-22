@@ -49,11 +49,15 @@
         <div class="row">
             <% for(var i = 0 ;i< ablums.length;i++){%>
                 <div class="col-xs-6 col-md-3">
-                    <a href="<%= ablums[i]%>" class="thumbnail">
-                        <img src="/images/file_null.jpg" alt="...">
+                    <a href="<%= ablums[i].holder%>" class="thumbnail">
+                        <% if(ablums[i].holderLen != 0){%>
+                            <img src="/images/file_have.jpg" alt="...">
+                        <% }else{%>
+                            <img src="/images/file_null.jpg" alt="...">
+                        <%}%>
                     </a>
                     <p class="textalign">
-                        <%= ablums[i]%>
+                        <%= ablums[i].holder%>
                     </p>
                 </div>
                 <%}%>
