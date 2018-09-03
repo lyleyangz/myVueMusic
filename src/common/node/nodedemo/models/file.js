@@ -56,39 +56,88 @@ exports.getAllPics = function (albumsNames, callback) {
 // 获取回收站的文件
 exports.getRecycleBin = function (folder,callback) {
     fs.readdir("./" + folder,function (err,files) {
+        var newPics = []
         if(err){
-            callback([]);
+            callback(null,[]);
             return
         }
-        callback(files)
-        console.log(files)
-        var RecycleBinPics = [];
-        // (function (i) {
-        //     if(i == files.length){
-        //         callback(null,RecycleBinPics);
-        //         return
-        //     }
-        //     fs.stat('./' + folder)
-        // })(0);
+        for(let i = 0;i < files.length; i++){
+            var oldPicNames = files[i];
+            var picFolders = oldPicNames.split("_")[0];
+            var picNames = oldPicNames.split("_")[1];
+            newPics.push({
+                folder:picFolders,
+                picName:picNames,
+                oldPicName:oldPicNames
+            })
+            // 没必要改名字
+            // fs.rename("./" +folder + '/' + oldPicNames,"./" +folder + '/' + picNames, function (err) {
+            //     if(err){
+            //         return
+            //     }
+            // })
+        }
+        callback(folder,newPics)
     })
 }
-// 删除对应文件夹下的一个文件或多个文件
-exports.deleteFolderFile = function (folder,file,callback) {
-    fs.exists('./uploads/' + folder + '/' + file, function (exists) {
+// 删除对应文件夹下的一个文件或多个文件（移动到回收站=？ 回收站有还原和彻底删除的功能的）
+exports.moveFolderFile = function (fileData,callback) {
+    console.log("123")
+    fs.exists('./uploads/' + fileData.holdersName + '/' + fileData.realName, function (exists) {
         if(exists){
-            var filePath = './uploads/' + folder + '/' + file;
-            fs.unlink(filePath,function (err) {
+            var filePath = './uploads/' + fileData.holdersName + '/' + fileData.realName;
+            // 回收站新文件命名格式为  被删除文件夹名称+文件本来的名称+格式
+            var newPath =  './recycleBin/' + fileData.realName;
+            // 在回收站创建新的文件夹，以便指明被删除的图片是来自那个相册（暂时废弃逻辑）
+            // var createdFloder = './recycleBin/' + folder;
+            // fs.mkdirSync(createdFloder);
+            console.log(filePath)
+            console.log(newPath)
+            fs.rename(filePath,newPath,function (err) {
                 if(err){
-                    callback(false)
+                    callback(false);
+                    return
                 }
                 callback(true)
             })
         }
     })
 }
+// 回收站彻底删除(delete)/和还原(reduction)功能
+exports.DandRFiles = function (fileData,type,callback) {
+    if(type === 'delete'){
+        fs.exists('./recycleBin/' + fileData.realName,function (exists) {
+            if(exists){
+                fs.unlinkSync('./recycleBin/' + fileData.realName,function (err) {
+                    if(err){
+                        callback(false);
+                        return
+                    }
+                    callback(true)
+                })
+            }
+        })
+    }
+    if(type === 'reduction'){
+        fs.exists('./recycleBin/' +  fileData.realName,function (exists) {
+            if(exists){
+                var oldPath = './recycleBin/' +  fileData.realName;
+                var newPath = './uploads/' + fileData.holdersName + '/' +  fileData.ejsRenderFileName;
+                fs.rename(oldPath,newPath,function(err) {
+                    if(err){
+                        callback(false);
+                        return;
+                    }
+                    callback(true)
+                })
+            }
+        })
+    }
+}
 // 判断所有文件夹时候含有子文件
 exports.perFolderHas = function (holders, callback) {
     var isHasHolder = [];
+    // 迭代器遍历
     (function iterator(i) {
         if (i == holders.length) {
             callback(isHasHolder);

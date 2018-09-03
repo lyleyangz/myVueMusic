@@ -1,7 +1,13 @@
 var express = require("express");
 var app = express();
+var path = require('path')
 
-var router = require('./controller/router.js')
+var controller = require('./controller/controller')
+
+var recycleBinRouter = require('./routes/recycle');
+var foldersdeleteRouter = require('./routes/foldersdelete');
+var uploadRouter = require('./routes/upload')
+
 // 设置模板引擎
 app.set('view engine','ejs');
 
@@ -11,16 +17,20 @@ app.use(express.static('./uploads'));
 app.use(express.static('./recycleBin'));
 
 
+
 //首页
-app.get('/',router.showIndex);
+// app.get('/',controller.showIndex);
 //相册
-app.get('/:albumsNames',router.showAlbums);
-app.get('/:holdersName/:folderFileExt',router.deletePics);
+// app.use('/:albumsNames',foldersdeleteRouter);
+// use适用主页面拥有子功能
+// get则是单一页面
+app.use('/',foldersdeleteRouter);
 // 回收站
-app.get('/recycleBin',router.showRecycleBin)
+app.use('/recycleBin',recycleBinRouter);
+// 回收站删除和还原
 // post页面路由
-app.get('/upload',router.showUpload)
-app.post('/post',router.doPost)
+app.use('/upload',uploadRouter)
+// app.post('/post',controller.doPost)
 // 404页面
 app.use(function(req,res){
     res.render('err')
