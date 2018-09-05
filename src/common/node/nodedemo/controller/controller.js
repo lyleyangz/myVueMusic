@@ -248,37 +248,34 @@ exports.doPost = function (req, res, next) {
     }
 
 }
-// GET方法（公共方法）
-exports.doGet = function (req, res, next) {
-    console.log('JInlai  DOGET ')
-    console.log(req.query);
-    var doIt = req.query.fileName.split("_");
-    var folderName = doIt[0];
-    var fileName = doIt[1];
-    var methodType = req.query.operation;
-    var fileData = {
-        folderName:folderName,
-        fileName:fileName
-    }
-    console.log(fileData,methodType);
-    res.end()
-    // fileModel.DandRFiles(fileData,methodType,function (bol) {
-    //     if(!bol){
-    //         next()
-    //         return
-    //     }
-    //     fileModel.getRecycleBin('recycleBin', function (folder, Pics) {
-    //         if (Pics.length == 0) {
-    //             res.render('recycle', {
-    //                 isNull: false,
-    //                 pics: Pics
-    //             })
-    //             return
-    //         }
-    //         res.render('recycle', {
-    //             isNull: true,
-    //             pics: Pics
-    //         })
-    //     })
-    // })
-}
+// GET方法（公共方法）（后期整合）
+// exports.doGet = function (req, res, next) {
+//     var doIt = req.query.fileName.split("_");
+//     var folderName = doIt[0];
+//     var fileName = doIt[1];
+//     var methodType = req.query.operation;
+//     var fileData = {
+//         folderName:folderName,
+//         fileName:fileName
+//     }
+//     res.end()
+//     fileModel.DandRFiles(fileData,methodType,function (bol) {
+//         if(!bol){
+//             next()
+//             return
+//         }
+//         fileModel.getRecycleBin('recycleBin', function (folder, Pics) {
+//             if (Pics.length == 0) {
+//                 res.render('recycle', {
+//                     isNull: false,
+//                     pics: Pics
+//                 })
+//                 return
+//             }
+//             res.render('recycle', {
+//                 isNull: true,
+//                 pics: Pics
+//             })
+//         })
+//     })
+// }

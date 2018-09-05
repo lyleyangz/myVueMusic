@@ -82,7 +82,6 @@ exports.getRecycleBin = function (folders,callback) {
 }
 // 删除对应文件夹下的一个文件或多个文件（移动到回收站=？ 回收站有还原和彻底删除的功能的）
 exports.moveFolderFile = function (fileData,callback) {
-    console.log("123")
     fs.exists('./uploads/' + fileData.holdersName + '/' + fileData.realName, function (exists) {
         if(exists){
             var filePath = './uploads/' + fileData.holdersName + '/' + fileData.realName;
@@ -91,8 +90,6 @@ exports.moveFolderFile = function (fileData,callback) {
             // 在回收站创建新的文件夹，以便指明被删除的图片是来自那个相册（暂时废弃逻辑）
             // var createdFloder = './recycleBin/' + folder;
             // fs.mkdirSync(createdFloder);
-            console.log(filePath)
-            console.log(newPath)
             fs.rename(filePath,newPath,function (err) {
                 if(err){
                     callback(false);
