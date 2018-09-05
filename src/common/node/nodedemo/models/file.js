@@ -54,11 +54,11 @@ exports.getAllPics = function (albumsNames, callback) {
     })
 }
 // 获取回收站的文件
-exports.getRecycleBin = function (folder,callback) {
-    fs.readdir("./" + folder,function (err,files) {
+exports.getRecycleBin = function (folders,callback) {
+    fs.readdir("./" + 'recycleBin',function (err,files) {
         var newPics = []
         if(err){
-            callback(null,[]);
+            callback('recycleBin',[]);
             return
         }
         for(let i = 0;i < files.length; i++){
@@ -77,7 +77,7 @@ exports.getRecycleBin = function (folder,callback) {
             //     }
             // })
         }
-        callback(folder,newPics)
+        callback('recycleBin',newPics)
     })
 }
 // 删除对应文件夹下的一个文件或多个文件（移动到回收站=？ 回收站有还原和彻底删除的功能的）
@@ -108,7 +108,7 @@ exports.DandRFiles = function (fileData,type,callback) {
     if(type === 'delete'){
         fs.exists('./recycleBin/' + fileData.realName,function (exists) {
             if(exists){
-                fs.unlinkSync('./recycleBin/' + fileData.realName,function (err) {
+                fs.unlink('./recycleBin/' + fileData.realName,function (err) {
                     if(err){
                         callback(false);
                         return
@@ -122,7 +122,7 @@ exports.DandRFiles = function (fileData,type,callback) {
         fs.exists('./recycleBin/' +  fileData.realName,function (exists) {
             if(exists){
                 var oldPath = './recycleBin/' +  fileData.realName;
-                var newPath = './uploads/' + fileData.holdersName + '/' +  fileData.ejsRenderFileName;
+                var newPath = './uploads/' + fileData.foldersName + '/' +  fileData.realName;
                 fs.rename(oldPath,newPath,function(err) {
                     if(err){
                         callback(false);

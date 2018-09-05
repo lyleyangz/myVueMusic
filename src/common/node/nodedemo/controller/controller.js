@@ -59,41 +59,32 @@ exports.showRecycleBin = function (req, res, next) {
 // 回收站彻底删除
 exports.deletePics = function (req, res, next) {
     // 功能
-    var type = req.params.type;
-    // 文件夹
-    var holdersName = req.params.holdersName;
-    // 文件名
-    var folderFileExt = req.params.holdersName + '_' + req.params.folderFileExt;
-    // ejs渲染文件名
-    var ejsRenderFileName = req.params.folderFileExt;
-    // 以对象的形式发送文件全部信息
+    var type = req.query.operation;
+    var doIt = (req.query.fileName).split('_');
     var fileData = {
-        holdersName: holdersName,
-        realName: folderFileExt,
-        ejsRenderFileName: ejsRenderFileName
+        foldersName: doIt[0],
+        realName: req.query.fileName,
     }
     // 根据功能执行不同操作（还原图片）（彻底删除图片）
     fileModel.DandRFiles(fileData, type, function (bol) {
-        console.log('麻烦', bol)
         if (!bol) {
             res.render('recycle', {
                 isNull: false
             })
             return
         }
-        res.send("oo")
-        // fileModel.getRecycleBin('recycleBin', function (folder, allPics) {
-        //     if (allPics.length == 0) {
-        //         res.render('recycle', {
-        //             isNull:false
-        //         })
-        //         return
-        //     }
-        //     res.render('recycle', {
-        //         isNull:true,
-        //         pics: allPics
-        //     })
-        // })
+        fileModel.getRecycleBin('recycleBin', function (folder, allPics) {
+            if (allPics.length == 0) {
+                res.render('recycle', {
+                    isNull:false
+                })
+                return
+            }
+            res.render('recycle', {
+                isNull:true,
+                pics: allPics
+            })
+        })
     })
 }
 // 删除相册图片(移动到回收站而已)=> 结合到doPost
@@ -162,7 +153,7 @@ exports.showUpload = function (req, res) {
         })
     })
 }
-// POST方法
+// POST方法(公共方法)
 exports.doPost = function (req, res, next) {
     // 图片移动
     if (req.url === '/move/post' && req.method === 'POST') {
@@ -231,9 +222,9 @@ exports.doPost = function (req, res, next) {
             var extname = path.extname(files.tupian.name)
             var oldpath = files.tupian.path;
             // 不能上传空文件
-            if(!wenjianjia || !extname || !oldpath){
+            if (!wenjianjia || !extname || !oldpath) {
                 res.send("不能上传空文件")
-                return 
+                return
             }
             var newpath = path.normalize(__dirname + '/../uploads/' + wenjianjia + '/' + wenjianjia + '_' + new Date().getTime() + extname)
             fs.rename(oldpath, newpath, function (err) {
@@ -256,4 +247,38 @@ exports.doPost = function (req, res, next) {
         })
     }
 
+}
+// GET方法（公共方法）
+exports.doGet = function (req, res, next) {
+    console.log('JInlai  DOGET ')
+    console.log(req.query);
+    var doIt = req.query.fileName.split("_");
+    var folderName = doIt[0];
+    var fileName = doIt[1];
+    var methodType = req.query.operation;
+    var fileData = {
+        folderName:folderName,
+        fileName:fileName
+    }
+    console.log(fileData,methodType);
+    res.end()
+    // fileModel.DandRFiles(fileData,methodType,function (bol) {
+    //     if(!bol){
+    //         next()
+    //         return
+    //     }
+    //     fileModel.getRecycleBin('recycleBin', function (folder, Pics) {
+    //         if (Pics.length == 0) {
+    //             res.render('recycle', {
+    //                 isNull: false,
+    //                 pics: Pics
+    //             })
+    //             return
+    //         }
+    //         res.render('recycle', {
+    //             isNull: true,
+    //             pics: Pics
+    //         })
+    //     })
+    // })
 }

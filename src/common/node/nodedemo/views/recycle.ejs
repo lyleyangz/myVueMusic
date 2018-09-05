@@ -16,17 +16,20 @@
             height: 400px;
             overflow: hidden;
         }*/
-        .thumbnail h3{
+
+        .thumbnail h3 {
             text-align: center
         }
-        .thumbnail .caption_p{
+
+        .thumbnail .caption_p {
             text-align: center
         }
+
         .thumbnail img {
             width: 200px;
             height: 200px;
             background-size: contain
-        } 
+        }
     </style>
 </head>
 
@@ -65,50 +68,123 @@
     </nav>
     <div class="container">
         <% if(isNull){%>
-        <div class="row">
-            <% for(var i = 0 ;i< pics.length;i++){%>
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <img src="<%= pics[i].oldPicName%>" alt="...">
-                        <div class="caption">
-                            <h3>
-                                <%= pics[i].picName%>
-                            </h3>
-                            <p class="caption_p">来自《<%= pics[i].folder%>》相册</p>
-                            <p>
-                                <a href="/recycleBin/reduction/<%= pics[i].folder%>/<%= pics[i].picName%>" class="btn btn-success" role="button">还原</a>
-                                <a href="/recycleBin/delete/<%= pics[i].folder%>/<%= pics[i].picName%>" class="btn btn-danger" role="button" style="float: right;">彻底删除</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <%}%>
-        </div>
-        <%}%>
-        <% if(!isNull){%>
-        <div class="row">
+            <div class="row">
+                <% for(var i = 0 ;i< pics.length;i++){%>
                     <div class="col-sm-6 col-md-4">
                         <div class="thumbnail">
-                            <img src="..." alt="...">
+                            <img src="<%= pics[i].oldPicName%>" alt="...">
                             <div class="caption">
                                 <h3>
-                                    空
+                                    <%= pics[i].picName%>
                                 </h3>
-                                <p class="caption_p">空相册</p>
+                                <p class="caption_p">来自《
+                                    <%= pics[i].folder%>》相册</p>
                                 <p>
-                                    <a href="#" class="btn btn-success" role="button" disabled="true">还原</a>
-                                    <a href="#" class="btn btn-danger" role="button" style="float: right;" disabled="true">彻底删除</a>
+                                    <a onclick="operation(event,this,'reduction')" data-type="<%= pics[i].oldPicName%>" class="btn btn-success" role="button">还原</a>
+                                    <a onclick="operation(event,this,'delete')" data-type="<%= pics[i].oldPicName%>" class="btn btn-danger" role="button" style="float: right;">彻底删除</a>
                                 </p>
                             </div>
                         </div>
                     </div>
+                    <%}%>
             </div>
-        <%}%>
+            <%}%>
+                <% if(!isNull){%>
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4">
+                            <div class="thumbnail">
+                                <img src="/images/empty.png" alt="...">
+                                <div class="caption">
+                                    <h3>
+                                        空
+                                    </h3>
+                                    <p class="caption_p">空相册</p>
+                                    <p>
+                                        <a href="#" class="btn btn-success" role="button" disabled="true">还原</a>
+                                        <a href="#" class="btn btn-danger" role="button" style="float: right;" disabled="true">彻底删除</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <%}%>
     </div>
     <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
     <script src="/js/bootstrap.min.js"></script>
+    <script>
+        function operation(e, that, type) {
+            var getDataType = that.getAttribute('data-type');
+            if (type === 'reduction') {
+                ajax_methods('/reduction/get', `fileName=${getDataType}&type=GET&from=recycle&operation=reduction`, 'get', function (res) {
+                    if (res) {
+                        document.location.reload();
+                    }
+                })
+            }
+            if (type === 'delete') {
+                ajax_methods('/delete/get', `fileName=${getDataType}&type=GET&from=recycle&operation=delete`, 'get', function (res) {
+                    if (res) {
+                        document.location.reload();
+                    }
+                })
+            }
+        }
+        function ajax_methods(url, data, method, success) {
+            // 异步对象
+            var ajax = new XMLHttpRequest();
+            // get 跟post  需要分别写不同的代码
+            if (method == 'get') {
+                // get请求
+                if (data) {
+                    // 如果有值
+                    url += '?';
+                    url += data;
+                } else {
+                    return
+                }
+                // 设置 方法 以及 url
+                ajax.open(method, url);
+
+                // send即可
+                ajax.send();
+            } else {
+                // post请求
+                // post请求 url 是不需要改变
+                ajax.open(method, url);
+
+                // 需要设置请求报文
+                ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+                // 判断data send发送数据
+                if (data) {
+                    // 如果有值 从send发送
+                    ajax.send(data);
+                } else {
+                    // 木有值 直接发送即可
+                    return
+                    // ajax.send();
+                }
+            }
+            // 注册事件
+            ajax.onreadystatechange = function () {
+                // 在事件中 获取数据 并修改界面显示
+                if (ajax.readyState == 4 && ajax.status == 200) {
+
+                    // 将 数据 让 外面可以使用
+                    // return ajax.responseText;
+
+                    // 当 onreadystatechange 调用时 说明 数据回来了
+                    // ajax.responseText;
+
+                    // 如果说 外面可以传入一个 function 作为参数 success
+                    success(ajax.responseText);
+                }
+            }
+
+        }
+    </script>
 </body>
 
 </html>
