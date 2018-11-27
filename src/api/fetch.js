@@ -8,8 +8,8 @@ import { resolve } from "upath";
 // &userid=-1&clientver=&platform=WebFilter&tag=em&filter=2&iscorrection=1&privilege_filter=0   =  不明！不清楚！不知道！（懵逼三连）
 // http://songsearch.kugou.com/song_search_v2?keyword=thatgirl&page=1&pagesize=1&userid=-1&clientver=&platform=WebFilter&tag=em&filter=2&iscorrection=1&privilege_filter=0
 
-// hash = 获取hash资源
-// ed  http://www.kugou.com/yy/index.php?r=play/getdata&hash=723715E13ECCC9AB7AFC154BA7E1CC3B&album_id=1820815
+// hash = 获取hash资源  hash位置在list下 filehash
+// ed  http://www.kugou.com/yy/index.php?r=play/getdata&hash=4BFDFA86BB283602D19F6E009E7B433C&album_id=2654758
 // 根据域名判断请求的接口
 // hash获取接口： 
 const  baseUrl = 'http://songsearch.kugou.com/song_search_v2';

@@ -1,0 +1,65 @@
+.Opinion{
+    .edit .cnt .item{
+        display: inherit
+    }
+    .Opinion_text{
+        border: 1px solid #cccccc;
+        margin: 10px 45px 0;
+        padding: 8px;
+    }
+    .put_pics{
+        width: 100%;
+        height: 100%;
+        margin-left: 50px;
+        img{
+            cursor: pointer;
+            // width: 250px;
+            height: 250px;
+            background-size: contain;
+        }
+        // 
+        .demo-upload-list{
+            display: inline-flex;
+            margin-right: 30px;
+            position: relative;
+            .ivu-icon-ios-eye-outline:before{
+                font-size: 50px;
+            }
+            .demo-upload-list-cover{
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                cursor: pointer;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                opacity: 0;
+                overflow: hidden;
+            }
+            .demo-upload-list-cover:hover{
+                opacity: 1; 
+                background:rgba(104, 100, 100, 0.7);
+            }
+        }
+    }
+    .btns{
+        text-align: center;
+    }
+}
+.putimg {
+    width: 50px;
+    height: 50px;
+    background-position: center center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: inline-block;
+    margin-left: 5px;
+  }
+  .ivu-modal{
+      width: 100%!important;
+      max-width: 1200px!important
+  }

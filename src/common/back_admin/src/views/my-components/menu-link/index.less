@@ -1,0 +1,51 @@
+.menu{
+    li{
+        line-height: 49px;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        cursor: pointer;
+    }
+    .ivu-icon{
+        margin: 0 5px 0 0;
+        font-size: 18px;
+    }
+    .item{
+        padding: 0 10px 0 22px;
+        transition: all 0.2s ease-in-out;
+        display: block;
+        border-bottom: 1px solid #313540;
+        &:hover{
+            color: #fff;
+        }
+        .arrow{
+            transition: transform 0.2s ease-in-out;
+            float: right;
+            line-height: 49px;
+        }
+    }
+    .sub-menu{
+        background: #313540;
+        height: 0px;
+        overflow:hidden;
+        transition: all 0.2s ease-in-out;
+        .sub-item{
+            padding: 0 10px 0 47px;
+            transition: all 0.2s ease-in-out;
+            &:hover{
+                color: #fff;
+            }
+        }
+    }
+    .open{
+        .item{
+            color: #fff;
+        }
+        .arrow{
+            transform: rotate(180deg);
+        }
+    }
+    .active{
+        background: #37accb;
+        color: #fff;
+    }
+}

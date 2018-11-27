@@ -1,0 +1,39 @@
+#baiduMap{
+    height: 500px;
+}
+.map-search{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    input{
+        width: 300px;
+        height: 30px;
+        padding: 0 10px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.3), 0 4px 15px -5px rgba(0,0,0,0.3);
+        border: none;
+    }
+    .searchResult{
+        background: #fff;
+        margin-top: 5px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.3), 0 4px 15px -5px rgba(0,0,0,0.3);
+        max-height: 500px;
+        overflow: auto;
+        
+        li{
+            height: 35px;
+            line-height: 35px;
+            padding: 0 10px;
+            cursor: pointer;
+            .title{
+                font-size: 14px;
+            }
+            .address{
+                font-size: 12px;
+                color: #999;
+            }
+        }
+        li:hover{
+            background: #eee;
+        }
+    }
+}
