@@ -31,7 +31,7 @@ export default {
   background: url("../../../assets/images/bg2.jpg") no-repeat center;
   background-size: 100% 100%;
   width: 100%;
-  height: 16.666667rem;
+  height: 15rem;
   button {
     width: 0.666667rem;
     height: 0.666667rem;
@@ -41,7 +41,6 @@ export default {
     height: 100%;
     overflow: hidden;
     margin: auto;
-    position: relative;
   }
   img {
     width: 20%;
