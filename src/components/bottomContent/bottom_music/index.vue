@@ -1,7 +1,7 @@
 <template>
 <div>
     <mu-container>
-        <div class="demo-text" v-if="shift == 'music'">
+        <div class="demo-text" v-if="shift == '1'">
             <div class="music-carousel">
                 <mu-carousel transition="fade">
                     <mu-carousel-item>
@@ -25,7 +25,7 @@
                     <mu-flex justify-content="center">
                         <mu-paper :z-depth="1">
                             <mu-grid-list class="gridlist-demo">
-                                <mu-grid-tile v-for="tile, index in list" :key="index"  @click="gridListRouter(index)">
+                                <mu-grid-tile v-for="(tile, index) in list" :key="index"  @click="gridListRouter(index)">
                                 <img :src="tile.image" >
                                 <span slot="title">{{tile.title}}</span>
                                 <span slot="subTitle">by <b>{{tile.author}}</b></span>
@@ -44,7 +44,7 @@
                     <mu-flex justify-content="center">
                         <mu-paper :z-depth="1">
                             <mu-grid-list class="gridlist-demo">
-                                <mu-grid-tile v-for="tile, index in list" :key="index">
+                                <mu-grid-tile v-for="(tile, index) in list" :key="index">
                                 <img :src="tile.image" >
                                 <span slot="title">{{tile.title}}</span>
                                 <span slot="subTitle">by <b>{{tile.author}}</b></span>
@@ -63,7 +63,7 @@
                     <mu-flex justify-content="center">
                         <mu-paper :z-depth="1">
                             <mu-grid-list class="gridlist-demo">
-                                <mu-grid-tile v-for="tile, index in list" :key="index">
+                                <mu-grid-tile v-for="(tile, index) in list" :key="index">
                                 <img :src="tile.image" >
                                 <span slot="title">{{tile.title}}</span>
                                 <span slot="subTitle">by <b>{{tile.author}}</b></span>
@@ -78,13 +78,13 @@
                 </mu-expansion-panel>
             </div>
         </div>
-        <div class="demo-text" v-if="shift == 'movies'">
+        <div class="demo-text" v-if="shift == '2'">
             <player></player>
         </div>
-        <div class="demo-text" v-if="shift == 'news'">
+        <div class="demo-text" v-if="shift == '3'">
             <p>{{shift}}</p>
         </div>
-        <div class="demo-text" v-if="shift == 'pictures'">
+        <div class="demo-text" v-if="shift == '4'">
             <p>{{shift}}</p>
         </div>
         <slot></slot>
@@ -93,15 +93,14 @@
 </template>
 
 <script>
-import carouselImg1 from "../../assets/images/carousel-1.jpg";
-import carouselImg2 from "../../assets/images/carousel-2.jpg";
-import carouselImg3 from "../../assets/images/carousel-3.jpg";
-import carouselImg4 from "../../assets/images/carousel-4.jpg";
-import http from "../../api/fetch.js";
-import player from "../player/player"
+import carouselImg1 from "../../../assets/images/carousel-1.jpg";
+import carouselImg2 from "../../../assets/images/carousel-2.jpg";
+import carouselImg3 from "../../../assets/images/carousel-3.jpg";
+import carouselImg4 from "../../../assets/images/carousel-4.jpg";
+import http from "../../../api/fetch.js";
+import player from "../../player/index";
 
 export default {
-  props: ["shift"],
   components: {
     player
   },
@@ -144,6 +143,15 @@ export default {
         }
       }
     };
+  },
+  computed:{
+    shift: {
+      get: function() {
+        return this.$store.state.current.BotttomNavBar.BotttomNavBarStates;
+      },
+      set: function(val) {
+	    }
+    }
   },
   methods: {
     toggle(panel) {
@@ -203,7 +211,7 @@ export default {
 <style lang="scss" scoped>
 .demo-text {
   padding: 0.213333rem;
-  background: url("../../assets/images/bg.jpg");
+  background: url("../../../assets/images/bg.jpg");
   background-size: 100% 100%;
   width: 100%;
   .music-list {

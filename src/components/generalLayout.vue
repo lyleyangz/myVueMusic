@@ -1,32 +1,37 @@
 <template>
 <div>
-        <Topbar></Topbar>
-        <Bottombar class="music-bottom"></Bottombar>
+  <!-- 抽屉 -->
+  <DrawerTempalte></DrawerTempalte>
+  <!-- 顶部 -->
+  <TopTempalte></TopTempalte>
+  <!-- 内容 -->
+  <EntranceTempalte></EntranceTempalte>
+  <!-- 底部 -->
+  <BotTempalte></BotTempalte>
 </div>
 </template>
 
 <script>
-import Bottombar from './bottomBar/bottomBar'
-import bottomItems from './bottomBar/bottomItems'
-import Topbar from './topBar/topBar'
-import Topitems from './topBar/topItems'
+import Drawer from './Drawer/index'
+import Bottombar from './bottomBar/index'
+import Topbar from './topBar/index'
+import Entrance from './Entrance/index'
+
 
 export default {
     components:{
-        Bottombar,
-        bottomItems,
-        Topbar,
-        Topitems
+      "TopTempalte":Topbar,
+      "BotTempalte":Bottombar,
+      "EntranceTempalte":Entrance,
+      "DrawerTempalte":Drawer
     },
   data() {
     return {
     };
   },
-  mounted() {
-    console.log(this.$i18n)
-  },
+  methods: {},
+  mounted() {},
   updated() {},
-  methods: {}
 };
 </script>
 

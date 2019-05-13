@@ -137,13 +137,12 @@ export default {
         // console.log(this.scroll)
         }else if(!this.$refs.wrapper){
             return
-        }
-        else{
+        }else{
             this.scroll.refresh()
         }
-                                this.scroll.on('scroll', (pos) => {
-                          console.log(pos)
-                        })
+        this.scroll.on('scroll', (pos) => {
+          console.log(pos)
+        })
       })
   }
 }

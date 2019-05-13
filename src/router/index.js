@@ -8,28 +8,14 @@ const generalLayout = (resolve) => {
     resolve(module)
   })
 }
-const bottomBar = (resolve) => {
-  import('@/components/bottomBar/bottomBar').then((module) => {
-    resolve(module)
-  })
-}
-const bottomItems = (resolve) => {
-  import('@/components/bottomBar/bottomItems').then((module) => {
-    resolve(module)
-  })
-}
-const topBar = (resolve) => {
-  import('@/components/topBar/topBar').then((module) => {
-    resolve(module)
-  })
-}
-const topItems = (resolve) => {
-  import('@/components/topBar/topItems').then((module) => {
+// 子页面入口
+const Entrance = (resolve) => {
+  import('@/components/Entrance/index').then((module) => {
     resolve(module)
   })
 }
 const player = (resolve) => {
-  import('@/components/player/player').then((module) => {
+  import('@/components/player/index').then((module) => {
     resolve(module)
   })
 }
@@ -44,20 +30,6 @@ const routerGroup = new Router({
     {
       path: '/generalLayout',
       component: generalLayout,
-      children: [
-        {
-          path: 'bottomBar', component: bottomBar,
-          children: [
-            { path: 'bottomItems', component: bottomItems }
-          ]
-        },
-        {
-          path: 'topBar', component: topBar,
-          children: [
-            { path: 'topItems', component: topItems }
-          ]
-        },
-      ],
       meta: {
         title: '音乐播放器',
       }
