@@ -210,7 +210,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .demo-text {
-  padding: 0.213333rem;
+  padding: 0 0.213333rem;
   background: url("../../../assets/images/bg.jpg");
   background-size: 100% 100%;
   width: 100%;

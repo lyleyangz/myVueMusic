@@ -14,9 +14,8 @@
     </div>
   </div>
 </template>
-
 <script>
-import player from "../player/index"
+// import player from "../player/index"
 import bottomMusic from "../bottomContent/bottom_music/index"
 import bottomMovie from "../bottomContent/bottom_movie/index"
 import bottomNote from "../bottomContent/bottom_note/index"
@@ -27,7 +26,7 @@ import topPlayer from "../topContent/top_player/index"
 import topUser from "../topContent/top_user/index"
 export default {
   components: {
-    "playerTem":player,
+    // "playerTem":player,
 
     "topNoticeTem":topNotice,
     "topPlayerTem":topPlayer,
@@ -40,6 +39,7 @@ export default {
   },
   data () {
     return {
+      initNavigationStatus:false
     }
   },
   computed:{
@@ -52,7 +52,12 @@ export default {
   },
   methods: {},
   updated(){
-    // console.log(this.Entrytype)
+    if(this.Entrytype.currentTag === "TOP"){
+      this.initNavigationStatus = false;
+    }else if(this.Entrytype.currentTag === "BOTTOM"){
+      this.initNavigationStatus = true;
+    }
+    // this.
   },
   mounted(){
     // console.log(this.Entrytype,"数据来自:mount")
@@ -62,7 +67,14 @@ export default {
 
 <style lang="scss" scoped>
 #entrance{
-  padding: 50px 0 60px;
-  border: 1px solid red;
+  padding: 1.28rem 0 1.493333rem;
+  box-sizing: border-box;
+  height: 100vh;
+  .entrance_top{
+    height: 100%;
+  }
+  .entrance_bottom{
+    height: 100%;
+  }
 }
 </style>

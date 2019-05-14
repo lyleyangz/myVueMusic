@@ -10,6 +10,7 @@ import 'muse-ui/dist/muse-ui.css'
 import i18n from './common/i18n';
 
 import utils from './common/utils/index'
+import './common/public_style/public.less'
 // import theme from 'muse-ui/lib/theme';
 import './assets/js/flexible'
 // 样式引入

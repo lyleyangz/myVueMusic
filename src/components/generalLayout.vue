@@ -42,5 +42,4 @@ export default {
   width: 100%;
   padding-top: 1rem;
 }
-
 </style>
