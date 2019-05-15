@@ -1,95 +1,108 @@
 <template>
-<div>
+  <div>
     <mu-container>
-        <div class="demo-text" v-if="shift == '1'">
-            <div class="music-carousel">
-                <mu-carousel transition="fade">
-                    <mu-carousel-item>
-                        <img :src="carouselImg1">
-                    </mu-carousel-item>
-                    <mu-carousel-item>
-                        <img :src="carouselImg2">
-                    </mu-carousel-item>
-                    <mu-carousel-item>
-                        <img :src="carouselImg3">
-                    </mu-carousel-item>
-                    <mu-carousel-item>
-                        <img :src="carouselImg4">
-                    </mu-carousel-item>
-                </mu-carousel>
-            </div>
-            <div class="music-list">
-                <mu-expansion-panel :expand="panel === 'panel1'" @change="toggle('panel1')" :zDepth='24'>
-                    <div slot="header" @click="testUrl()">推荐歌单</div>
-                    <mu-container>
-                    <mu-flex justify-content="center">
-                        <mu-paper :z-depth="1">
-                            <mu-grid-list class="gridlist-demo">
-                                <mu-grid-tile v-for="(tile, index) in list" :key="index"  @click="gridListRouter(index)">
-                                <img :src="tile.image" >
-                                <span slot="title">{{tile.title}}</span>
-                                <span slot="subTitle">by <b>{{tile.author}}</b></span>
-                                <mu-button slot="action" icon>
-                                    <mu-icon value="star_border"></mu-icon>
-                                </mu-button>
-                                </mu-grid-tile>
-                            </mu-grid-list>
-                        </mu-paper>
-                    </mu-flex>
-                </mu-container>
-                </mu-expansion-panel>
-                <mu-expansion-panel :expand="panel === 'panel2'" @change="toggle('panel2')" :zDepth='24'>
-                    <div slot="header">最新音乐</div>
-                    <mu-container>
-                    <mu-flex justify-content="center">
-                        <mu-paper :z-depth="1">
-                            <mu-grid-list class="gridlist-demo">
-                                <mu-grid-tile v-for="(tile, index) in list" :key="index">
-                                <img :src="tile.image" >
-                                <span slot="title">{{tile.title}}</span>
-                                <span slot="subTitle">by <b>{{tile.author}}</b></span>
-                                <mu-button slot="action" icon>
-                                    <mu-icon value="star_border"></mu-icon>
-                                </mu-button>
-                                </mu-grid-tile>
-                            </mu-grid-list>
-                        </mu-paper>
-                    </mu-flex>
-                </mu-container>
-                </mu-expansion-panel>
-                <mu-expansion-panel :expand="panel === 'panel3'" @change="toggle('panel3')"  :zDepth='24'>
-                    <div slot="header">最热音乐</div>
-                    <mu-container>
-                    <mu-flex justify-content="center">
-                        <mu-paper :z-depth="1">
-                            <mu-grid-list class="gridlist-demo">
-                                <mu-grid-tile v-for="(tile, index) in list" :key="index">
-                                <img :src="tile.image" >
-                                <span slot="title">{{tile.title}}</span>
-                                <span slot="subTitle">by <b>{{tile.author}}</b></span>
-                                <mu-button slot="action" icon>
-                                    <mu-icon value="star_border"></mu-icon>
-                                </mu-button>
-                                </mu-grid-tile>
-                            </mu-grid-list>
-                        </mu-paper>
-                    </mu-flex>
-                </mu-container>
-                </mu-expansion-panel>
-            </div>
+      <div class="demo-text" v-if="shift == '1'">
+        <div class="music-carousel">
+          <mu-carousel transition="fade">
+            <mu-carousel-item>
+              <img :src="carouselImg1">
+            </mu-carousel-item>
+            <mu-carousel-item>
+              <img :src="carouselImg2">
+            </mu-carousel-item>
+            <mu-carousel-item>
+              <img :src="carouselImg3">
+            </mu-carousel-item>
+            <mu-carousel-item>
+              <img :src="carouselImg4">
+            </mu-carousel-item>
+          </mu-carousel>
         </div>
-        <div class="demo-text" v-if="shift == '2'">
-            <player></player>
+        <div class="music-list">
+          <mu-expansion-panel :expand="panel === 'panel1'" @change="toggle('panel1')" :zDepth="24">
+            <div slot="header" @click="testUrl()">推荐歌单</div>
+            <mu-container>
+              <mu-flex justify-content="center">
+                <mu-paper :z-depth="1">
+                  <mu-grid-list class="gridlist-demo">
+                    <mu-grid-tile
+                      v-for="(tile, index) in list"
+                      :key="index"
+                      @click="gridListRouter(index)"
+                    >
+                      <img :src="tile.image">
+                      <span slot="title">{{tile.title}}</span>
+                      <span slot="subTitle">
+                        by
+                        <b>{{tile.author}}</b>
+                      </span>
+                      <mu-button slot="action" icon>
+                        <mu-icon value="star_border"></mu-icon>
+                      </mu-button>
+                    </mu-grid-tile>
+                  </mu-grid-list>
+                </mu-paper>
+              </mu-flex>
+            </mu-container>
+          </mu-expansion-panel>
+          <mu-expansion-panel :expand="panel === 'panel2'" @change="toggle('panel2')" :zDepth="24">
+            <div slot="header">最新音乐</div>
+            <mu-container>
+              <mu-flex justify-content="center">
+                <mu-paper :z-depth="1">
+                  <mu-grid-list class="gridlist-demo">
+                    <mu-grid-tile v-for="(tile, index) in list" :key="index">
+                      <img :src="tile.image">
+                      <span slot="title">{{tile.title}}</span>
+                      <span slot="subTitle">
+                        by
+                        <b>{{tile.author}}</b>
+                      </span>
+                      <mu-button slot="action" icon>
+                        <mu-icon value="star_border"></mu-icon>
+                      </mu-button>
+                    </mu-grid-tile>
+                  </mu-grid-list>
+                </mu-paper>
+              </mu-flex>
+            </mu-container>
+          </mu-expansion-panel>
+          <mu-expansion-panel :expand="panel === 'panel3'" @change="toggle('panel3')" :zDepth="24">
+            <div slot="header">最热音乐</div>
+            <mu-container>
+              <mu-flex justify-content="center">
+                <mu-paper :z-depth="1">
+                  <mu-grid-list class="gridlist-demo">
+                    <mu-grid-tile v-for="(tile, index) in list" :key="index">
+                      <img :src="tile.image">
+                      <span slot="title">{{tile.title}}</span>
+                      <span slot="subTitle">
+                        by
+                        <b>{{tile.author}}</b>
+                      </span>
+                      <mu-button slot="action" icon>
+                        <mu-icon value="star_border"></mu-icon>
+                      </mu-button>
+                    </mu-grid-tile>
+                  </mu-grid-list>
+                </mu-paper>
+              </mu-flex>
+            </mu-container>
+          </mu-expansion-panel>
         </div>
-        <div class="demo-text" v-if="shift == '3'">
-            <p>{{shift}}</p>
-        </div>
-        <div class="demo-text" v-if="shift == '4'">
-            <p>{{shift}}</p>
-        </div>
-        <slot></slot>
+      </div>
+      <div class="demo-text" v-if="shift == '2'">
+        <player></player>
+      </div>
+      <div class="demo-text" v-if="shift == '3'">
+        <p>{{shift}}</p>
+      </div>
+      <div class="demo-text" v-if="shift == '4'">
+        <p>{{shift}}</p>
+      </div>
+      <slot></slot>
     </mu-container>
-</div>
+  </div>
 </template>
 
 <script>
@@ -137,20 +150,19 @@ export default {
       data: {
         method: "get",
         params: {
-          keyword: "thatgirl",
+          keyword: "shots",
           page: 1,
           pagesize: 1
         }
       }
     };
   },
-  computed:{
+  computed: {
     shift: {
       get: function() {
         return this.$store.state.current.BotttomNavBar.BotttomNavBarStates;
       },
-      set: function(val) {
-	    }
+      set: function(val) {}
     }
   },
   methods: {

@@ -29,31 +29,82 @@
         </p>
       </div>
     </div>
-    <!-- 操作 -->
-    <div class="Switch" ref="switch">
-      <!-- 上一首 -->
-      <div class="pre">
-        <mu-icon value="skip_previous" size="60"></mu-icon>
+    <div class="Operation">
+      <!-- 操作 -->
+      <div class="Switch" ref="switch">
+        <!-- 上一首 -->
+        <div class="pre">
+          <mu-icon value="skip_previous" size="60"></mu-icon>
+        </div>
+        <!-- 播放暂停 -->
+        <div class="play">
+          <mu-icon value="play_circle_outline" size="80"></mu-icon>
+          <mu-icon value="pause_circle_outline" size="80" style="display:none"></mu-icon>
+        </div>
+        <!-- 下一首 -->
+        <div class="next">
+          <mu-icon value="skip_next" size="60"></mu-icon>
+        </div>
+        <!-- 收藏等功能 -->
+        <div class="add">
+          <mu-icon ref="buttonsss" @click="open = !open" value="playlist_add" size="40"></mu-icon>
+          <mu-popover placement="top-end" :open.sync="open" :trigger="trigger">
+            <mu-list>
+              <mu-list-item button>
+                <mu-list-item-title>
+                  <!-- 随机-->
+                  <mu-icon value="shuffle" size="20"></mu-icon>
+                  <!-- 单曲循环 -->
+                  <mu-icon value="repeat_one" size="20" style="display:none"></mu-icon>
+                  <!-- 顺序播放 -->
+                  <mu-icon value="reorder" size="20" style="display:none"></mu-icon>
+                  <!-- 列表循环 -->
+                  <mu-icon value="repeat" size="20" style="display:none"></mu-icon>
+                </mu-list-item-title>
+              </mu-list-item>
+              <mu-list-item button>
+                <mu-list-item-title>
+                  <mu-icon value="favorite_border" size="20"></mu-icon>
+                  <mu-icon value="favorite" size="20" style="display:none"></mu-icon>
+                </mu-list-item-title>
+              </mu-list-item>
+            </mu-list>
+          </mu-popover>
+        </div>
       </div>
-      <!-- 播放暂停 -->
-      <div class="play">
-        <mu-icon value="play_circle_outline" size="80"></mu-icon>
-        <mu-icon value="pause_circle_outline" size="80" style="display:none"></mu-icon>
-      </div>
-      <!-- 下一首 -->
-      <div class="next">
-        <mu-icon value="skip_next" size="60"></mu-icon>
-      </div>
+      <!-- 歌曲播放模式 -->
+      <!-- <div class="Pattern"> -->
+        <!-- 模式 -->
+        <!-- <div class="model"> -->
+          <!-- 随机-->
+          <!-- <mu-icon value="shuffle" size="30"></mu-icon> -->
+          <!-- 单曲循环 -->
+          <!-- <mu-icon value="repeat_one" size="30" style="display:none"></mu-icon> -->
+          <!-- 顺序播放 -->
+          <!-- <mu-icon value="reorder" size="30" style="display:none"></mu-icon> -->
+          <!-- 列表循环 -->
+          <!-- <mu-icon value="repeat" size="30" style="display:none"></mu-icon>
+        </div> -->
+        <!-- 收藏 -->
+        <!-- <div class="like">
+          <mu-icon value="favorite_border" size="30"></mu-icon>
+          <mu-icon value="favorite" size="30" style="display:none"></mu-icon>
+        </div> -->
+      <!-- </div> -->
     </div>
   </div>
 </template>
 
 <script>
+import {aaa} from "../../../api/test.js";
+import axios from 'axios'
 export default {
   components: {},
   data() {
     return {
       linear: 100,
+      open:false,
+      trigger: null
     };
   },
   created() {
@@ -64,6 +115,16 @@ export default {
   },
   methods: {},
   mounted() {
+    this.trigger = this.$refs.buttonsss;
+    axios.get('/api/aaa', {
+
+    params: {}
+
+  }).then(res => {
+console.log(res)
+    return Promise.resolve(res.data)
+
+  })
   },
   updated() {},
   destroyed() {}
@@ -107,7 +168,7 @@ export default {
   // 歌词
   .Lyric {
     width: 100%;
-    height: 5.6rem;
+    height: 4.25rem;
     padding: 0.346667rem;
     box-sizing: border-box;
     overflow: scroll;
@@ -121,15 +182,36 @@ export default {
       }
     }
   }
-  // 用户操作
-  .Switch {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    box-sizing: border-box;
-    height: 2.4rem;
-    align-self: flex-end;
-    box-sizing: border-box;
+  .Operation{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    // 用户操作
+    .Switch {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      box-sizing: border-box;
+      height: auto;
+      align-self: flex-end;
+      box-sizing: border-box;
+      .add{
+        position: absolute;
+        right: 0.7rem;
+        bottom: 2.24rem;
+      }
+    }
+    // 播放模式
+    // .Pattern{
+    //   display: flex;
+    //   justify-content: space-around;
+    //   align-items: center;
+    //   box-sizing: border-box;
+    //   height: .933333rem;
+    //   line-height: .933333rem;
+    //   align-self: flex-end;
+    //   box-sizing: border-box;
+    // }
   }
 }
 </style>
