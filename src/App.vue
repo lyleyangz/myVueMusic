@@ -11,8 +11,8 @@ export default {
 </script>
 <style lang="scss" >
 .container{
-    padding-right: 0rem;
-    padding-left: 0rem;
-    max-width:100%;
+    padding-right: 0rem!important;
+    padding-left: 0rem!important;
+    max-width:100%!important
   }
 </style>

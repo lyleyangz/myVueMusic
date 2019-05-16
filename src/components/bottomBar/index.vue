@@ -39,12 +39,20 @@ export default {
       ]
     };
   },
-  computed:{},
+  computed:{
+    Entrytype: {
+      get: function() {
+        return this.$store.state.current;
+      },
+      set: function(val) {}
+    }
+  },
   methods: {},
   mounted() {},
   updated() {
     // 底部导航栏状态值
     this.$store.commit("RecordNavStatus",{type:"BOTTOM",val:this.shift});
+    console.log(this.Entrytype)
   },
   destroyed(){
   }

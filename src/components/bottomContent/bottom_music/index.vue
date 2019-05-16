@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="Music">
     <mu-container>
       <div class="demo-text" v-if="shift == '1'">
         <div class="music-carousel">
@@ -221,25 +221,29 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-.demo-text {
-  padding: 0 0.213333rem;
-  background: url("../../../assets/images/bg.jpg");
-  background-size: 100% 100%;
-  width: 100%;
-  .music-list {
-    margin: 0.266667rem 0rem 0.266667rem 0rem;
-    .mu-expansion-panel {
-      background: transparent;
-      color: #fff;
-    }
-    .gridlist-demo {
-      overflow-y: auto;
-    }
-  }
-  img {
+#Music{
+  height: 100%;
+  .demo-text {
+    padding: 0 0.213333rem;
+    background: url("../../../assets/images/bg.jpg");
+    background-size: 100% 100%;
     width: 100%;
-    height: 100%;
-    background-size: contain;
+    height:100%;
+    .music-list {
+      margin: 0.266667rem 0rem 0.266667rem 0rem;
+      .mu-expansion-panel {
+        background: transparent;
+        color: #fff;
+      }
+      .gridlist-demo {
+        overflow-y: auto;
+      }
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      background-size: contain;
+    }
   }
 }
 </style>

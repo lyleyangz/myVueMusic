@@ -70,11 +70,12 @@ export default {
   padding: 1.28rem 0 1.493333rem;
   box-sizing: border-box;
   height: 100vh;
+  overflow: auto;
   .entrance_top{
     height: 100%;
   }
   .entrance_bottom{
-    height: 100%;
+    // height: 100%;
   }
 }
 </style>

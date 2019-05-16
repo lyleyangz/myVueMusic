@@ -116,15 +116,9 @@ export default {
   methods: {},
   mounted() {
     this.trigger = this.$refs.buttonsss;
-    axios.get('/api/aaa', {
-
-    params: {}
-
-  }).then(res => {
-console.log(res)
-    return Promise.resolve(res.data)
-
-  })
+    axios.get('/api', {params: {keywords:"shots"}}).then(res => {
+      console.log(res)
+    })
   },
   updated() {},
   destroyed() {}
