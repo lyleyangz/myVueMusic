@@ -116,7 +116,7 @@ export default {
   methods: {},
   mounted() {
     this.trigger = this.$refs.buttonsss;
-    axios.get('/api', {params: {keywords:"shots"}}).then(res => {
+    axios.get('/api', {params: {keyword:"shots"}}).then(res => {
       console.log(res)
     })
   },
